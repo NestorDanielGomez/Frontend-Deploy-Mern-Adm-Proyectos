@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <>
-      <h1 className="text-sky-600 font-bold text-6xl before:capitalize">
+      <h1 className="text-sky-600 font-bold text-6xl capitalize">
         Iniciar Sesión y Administra tus{" "}
         <span className="text-slate-700">Proyectos</span>
       </h1>
@@ -38,6 +39,18 @@ const Login = () => {
           value="Iniciar Sesion"
         />
       </form>
+      <nav className="lg:flex lg:justify-between">
+        <Link
+          to="/registrar"
+          className="block text-center my-5 text-slate-500 uppercase text-sm">
+          ¿No tienes cuenta?, Crea una...
+        </Link>
+        <Link
+          to="/olvide-password"
+          className="block text-center my-5 text-slate-500 uppercase text-sm">
+          Olvide mi password
+        </Link>
+      </nav>
     </>
   );
 };
