@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Alerta from "../components/Alerta";
 import axios from "axios";
+import clienteAxios from "../config/clienteAxios";
 
 const Registrar = () => {
   const [nombre, setNombre] = useState("");
@@ -37,12 +38,17 @@ const Registrar = () => {
     setAlerta({});
     //crear usuario en la api
     try {
-      const { data } = await axios.post("http://localhost:4000/api/usuarios", {
+      const { data } = await clienteAxios.axios.post(`/usuarios`, {
         nombre,
         email,
         password,
       });
       setAlerta({ msg: data.msg, error: false });
+      //ya se creo el usuario
+      setNombre("");
+      setEmail("");
+      setPassword("");
+      setRepetirPassword("");
     } catch (error) {
       setAlerta({ msg: error.response.data.msg, error: true });
     }
