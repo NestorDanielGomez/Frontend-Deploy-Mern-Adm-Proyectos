@@ -22,8 +22,9 @@ const AuthProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       };
+
       try {
-        const { data } = clienteAxios("/usuarios/perfil", config);
+        const { data } = await clienteAxios("/usuarios/perfil", config);
         setAuth(data);
       } catch (error) {
         setAuth({});
