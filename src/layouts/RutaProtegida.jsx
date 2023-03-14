@@ -6,18 +6,16 @@ import Sidebar from "../components/Sidebar";
 const RutaProtegida = () => {
   const { auth, cargando } = useAuth();
 
-  if (cargando) {
-    return <div>Cargando...</div>;
-  }
-
+  if (cargando) return "Cargando...";
+  setTimeout(() => {}, 1000);
   return (
     <>
-      {auth?._id ? (
+      {auth ? (
         <div className="bg-gray-100">
           <Header />
           <div className="md:flex md:h-screen">
             <Sidebar />
-            <main className="p-10 flex-1 bg-sky-200">
+            <main className="p-10 flex-1">
               <Outlet />
             </main>
           </div>
