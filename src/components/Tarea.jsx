@@ -1,6 +1,8 @@
 import formatearFecha from "../helpers/formatearFecha";
+import useProyectos from "../hooks/useProyectos";
 
 const Tarea = ({ tarea }) => {
+  const { handleModalEditarTarea } = useProyectos();
   const { nombre, descripcion, fechaEntrega, prioridad, estado, _id } = tarea;
 
   return (
@@ -8,11 +10,13 @@ const Tarea = ({ tarea }) => {
       <div className="">
         <p className="text-4xl mb-1">{nombre}</p>
         <p className="text-sm mb-1 uppercase text-gray-500">{descripcion}</p>
-        <p className="text-4xl">{formatearFecha(fechaEntrega)}</p>
+        <p className="text-sm">{formatearFecha(fechaEntrega)}</p>
         <p className="text-gray-600 mb-1">Prioridad: {prioridad}</p>
       </div>
       <div className="flex gap-2">
-        <button className="bg-indigo-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
+        <button
+          onClick={() => handleModalEditarTarea(tarea)}
+          className="bg-indigo-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
           Editar
         </button>
 

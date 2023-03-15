@@ -9,8 +9,6 @@ const Proyecto = () => {
   const { obtenerProyecto, proyecto, cargando, handleModalTarea } =
     useProyectos();
 
-  const [modal, setModal] = useState(false);
-
   useEffect(() => {
     obtenerProyecto(params.id);
   }, []);
@@ -75,7 +73,7 @@ const Proyecto = () => {
           </p>
         )}
       </div>
-      <ModalFormularioTarea modal={modal} setModal={setModal} />
+      <ModalFormularioTarea />
     </>
   );
 };
