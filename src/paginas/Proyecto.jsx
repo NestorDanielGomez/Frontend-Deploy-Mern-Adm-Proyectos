@@ -3,8 +3,10 @@ import { useParams, Link } from "react-router-dom";
 import useProyectos from "../hooks/useProyectos";
 import ModalFormularioTarea from "../components/ModalFormularioTarea";
 import ModalEliminarTarea from "../components/ModalEliminarTarea";
+import ModalEliminarColaborador from "../components/ModalEliminarColaborador";
 import Tarea from "../components/Tarea";
 import Alerta from "../components/Alerta";
+import Colaborador from "../components/Colaborador";
 
 const Proyecto = () => {
   const params = useParams();
@@ -77,8 +79,30 @@ const Proyecto = () => {
           </p>
         )}
       </div>
+      <div className="flex items-center justify-between mt-10">
+        <p className="font-bold text-xl mt-2">Colaboradores</p>
+        <Link
+          to={`/proyectos/nuevo-colaborador/${proyecto._id}`}
+          className="text-gray-400 uppercase font-bold hover:text-black">
+          Añadir
+        </Link>
+      </div>
+
+      <div className="bg-white shadow mt-10 rounded-lg">
+        {proyecto.colaboradores?.length ? (
+          proyecto.colaboradores?.map((colaborador) => (
+            <Colaborador key={colaborador._id} colaborador={colaborador} />
+          ))
+        ) : (
+          <p className="text-center my-5 p-10">
+            No hay colaboradores en este proyecto
+          </p>
+        )}
+      </div>
+
       <ModalFormularioTarea />
       <ModalEliminarTarea />
+      <ModalEliminarColaborador />
     </>
   );
 };

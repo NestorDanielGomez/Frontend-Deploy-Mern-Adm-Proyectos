@@ -11,8 +11,6 @@ const Registrar = () => {
   const [repetirPassword, setRepetirPassword] = useState("");
   const [alerta, setAlerta] = useState({});
 
-  const { msg } = alerta;
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if ([nombre, email, password, repetirPassword].includes("")) {
@@ -37,23 +35,28 @@ const Registrar = () => {
     }
     setAlerta({});
     //crear usuario en la api
+
     try {
-      const { data } = await clienteAxios.axios.post(`/usuarios`, {
+      console.log({ nombre, email, password });
+      const { data } = await clienteAxios.post("/usuarios", {
         nombre,
         email,
         password,
       });
+
       setAlerta({ msg: data.msg, error: false });
+
       //ya se creo el usuario
       setNombre("");
       setEmail("");
       setPassword("");
       setRepetirPassword("");
     } catch (error) {
-      setAlerta({ msg: error.response.data.msg, error: true });
+      console.log(error);
+      //etAlerta({ msg: error.response.data.msg, error: true });
     }
   };
-
+  const { msg } = alerta;
   return (
     <>
       <h1 className="text-sky-600 font-bold text-6xl capitalize">
