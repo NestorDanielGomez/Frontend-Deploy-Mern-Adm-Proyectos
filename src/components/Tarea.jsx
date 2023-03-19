@@ -1,9 +1,12 @@
 import formatearFecha from "../helpers/formatearFecha";
 import useProyectos from "../hooks/useProyectos";
+import useAdmin from "../hooks/useAdmin";
 
 const Tarea = ({ tarea }) => {
-  const { handleModalEditarTarea, handleModalEliminarTarea } = useProyectos();
+  const { handleModalEditarTarea, handleModalEliminarTarea, completarTarea } =
+    useProyectos();
   const { nombre, descripcion, fechaEntrega, prioridad, estado, _id } = tarea;
+  const admin = useAdmin();
 
   return (
     <div className="border-b p-5 flex justify-between items-center">
@@ -13,28 +16,30 @@ const Tarea = ({ tarea }) => {
         <p className="text-sm">{formatearFecha(fechaEntrega)}</p>
         <p className="text-gray-600 mb-1">Prioridad: {prioridad}</p>
       </div>
-      <div className="flex gap-2">
-        <button
-          onClick={() => handleModalEditarTarea(tarea)}
-          className="bg-indigo-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
-          Editar
-        </button>
-
-        {estado ? (
-          <button className="bg-sky-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
-            Completa
-          </button>
-        ) : (
-          <button className="bg-gray-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
-            Incompleta
+      <div className="flex flex-col lg:flex-row gap-2">
+        {admin && (
+          <button
+            className="bg-indigo-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg"
+            onClick={() => handleModalEditarTarea(tarea)}>
+            Editar
           </button>
         )}
 
         <button
-          onClick={() => handleModalEliminarTarea(tarea)}
-          className="bg-red-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
-          Eliminar
+          className={`${
+            estado ? "bg-sky-600" : "bg-gray-600"
+          } px-4 py-3 text-white uppercase font-bold text-sm rounded-lg`}
+          onClick={() => completarTarea(_id)}>
+          {estado ? "Completa" : "Incompleta"}
         </button>
+
+        {admin && (
+          <button
+            onClick={() => handleModalEliminarTarea(tarea)}
+            className="bg-red-600 px-4 py-3 text-white uppercase font-bold text-sm rounded-lg">
+            Eliminar
+          </button>
+        )}
       </div>
     </div>
   );
