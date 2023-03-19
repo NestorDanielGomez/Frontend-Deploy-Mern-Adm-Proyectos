@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import useProyectos from "../hooks/useProyectos";
+import Busqueda from "./Busqueda";
+
 const Header = () => {
   const { handleBuscador, buscador } = useProyectos();
   return (
@@ -22,6 +24,7 @@ const Header = () => {
           <button className="text-white text-sm bg-sky-600 p-3 rounded-md uppercase font-bold">
             Cerrar Sesión
           </button>
+          <Busqueda />
         </div>
       </div>
     </header>
