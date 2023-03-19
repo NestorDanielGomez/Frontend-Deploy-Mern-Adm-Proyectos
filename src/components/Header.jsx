@@ -1,17 +1,21 @@
 import { Link } from "react-router-dom";
+import useProyectos from "../hooks/useProyectos";
 const Header = () => {
+  const { handleBuscador, buscador } = useProyectos();
   return (
     <header className="px-4 py-5 bg-white border-b">
       <div className="md:flex md:justify-between">
-        <h2 className="text-4xl text-sky-600 font-extrabold text-center">
+        <h2 className="text-4xl text-sky-600 font-extrabold text-center mb-5 md:mb-0">
           ADM Proyectos
         </h2>
-        <input
-          type="search"
-          placeholder="buscar proyecto"
-          className="rounded-lg lg:w-96 p-2 border"
-        />
-        <div className="flex items-center gap-4">
+
+        <div className="flex flex-col md:flex-row items-center gap-4">
+          <button
+            className="font-bold uppercase"
+            type="button"
+            onClick={handleBuscador}>
+            Buscar Proyecto
+          </button>
           <Link to="/proyectos" className="font-bold uppercase">
             Proyectos
           </Link>

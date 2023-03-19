@@ -2,6 +2,7 @@ import { useState, useEffect, createContext } from "react";
 import clienteAxios from "../config/clienteAxios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+
 const ProyectosContext = createContext();
 
 const ProyectosProvider = ({ children }) => {
@@ -15,6 +16,7 @@ const ProyectosProvider = ({ children }) => {
   const [colaborador, setColaborador] = useState({});
   const [modalEliminarColaborador, setModalEliminarColaborador] =
     useState(false);
+  const [buscador, setBuscador] = useState(false);
 
   const navigate = useNavigate();
   const { auth } = useAuth();
@@ -424,6 +426,10 @@ const ProyectosProvider = ({ children }) => {
       console.log(error.response);
     }
   };
+
+  const handleBuscador = () => {
+    setBuscador(!buscador);
+  };
   return (
     <ProyectosContext.Provider
       value={{
@@ -450,6 +456,8 @@ const ProyectosProvider = ({ children }) => {
         modalEliminarColaborador,
         eliminarColaborador,
         completarTarea,
+        handleBuscador,
+        buscador,
       }}>
       {children}
     </ProyectosContext.Provider>
