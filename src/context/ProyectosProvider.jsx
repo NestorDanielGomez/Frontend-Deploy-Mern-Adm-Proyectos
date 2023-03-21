@@ -415,10 +415,10 @@ const ProyectosProvider = ({ children }) => {
         {},
         config
       );
-
-      socket.emit("cambiar estado", data);
       setTarea({});
       setAlerta({});
+      console.log(data);
+      socket.emit("cambiar estado", data);
     } catch (error) {
       console.log(error.response);
     }
@@ -457,6 +457,12 @@ const ProyectosProvider = ({ children }) => {
     );
     setProyecto(proyectoActualizado);
   };
+
+  const cerrarSesionProyectos = () => {
+    setProyectos([]);
+    setProyecto({});
+    setAlerta({});
+  };
   return (
     <ProyectosContext.Provider
       value={{
@@ -489,6 +495,7 @@ const ProyectosProvider = ({ children }) => {
         elminiarTareaProyecto,
         actualizarTareaProyecto,
         cambiarEstadoTarea,
+        cerrarSesionProyectos,
       }}>
       {children}
     </ProyectosContext.Provider>
