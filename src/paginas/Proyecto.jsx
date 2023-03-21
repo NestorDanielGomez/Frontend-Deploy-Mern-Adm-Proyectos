@@ -42,6 +42,7 @@ const Proyecto = () => {
         submitTareaProyecto(tareaNueva);
       }
     });
+
     socket.on("tarea eliminada", (tareaEliminada) => {
       if (tareaEliminada.proyecto === proyecto._id) {
         elminiarTareaProyecto(tareaEliminada);
