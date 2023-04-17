@@ -39,12 +39,13 @@ const Login = () => {
     }
   };
   const { msg } = alerta;
-  if (cargando) return "Cargando.....";
+
   return (
     <>
       <h1 className="text-sky-600 font-bold text-6xl capitalize">
         Iniciar Sesión y Administra tus <span className="text-slate-700">Proyectos</span>
       </h1>
+      {cargando && <p>Iniciando Sesión.....</p>}
       {msg && <Alerta alerta={alerta} />}
       <form onSubmit={handlesubmit} className="my-10 bg-white shadow rounded-lg p-10 ">
         <div className="my-5 ">
