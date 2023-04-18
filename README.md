@@ -1,5 +1,3 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
 ## Proyectos para administracion de proyectos
 
 Deploy del sitio: [DATA-SEND](https://leafy-alfajores-9590cf.netlify.app)
@@ -29,3 +27,8 @@ Dependencias utilizadas
 Framework CSS:
 
 - [tailwindcss](https://tailwindcss.com/docs/installation)
+
+<img src="./public/mostrarproyectos.gif"/>
+<img src="./public/completo-elimino.gif"/>
+<img src="./public/elimino-colaborador.gif"/>
+<img src="./public/mailtrap.png"/>
